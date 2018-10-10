@@ -1,6 +1,8 @@
 // compile: g++ -o a2ece650 ../a2ece650.cpp
 #include <iostream>
+#include <limits>
 #include "a2ece650.hpp"
+
 
 int main() {
     // Complex cx(10, 4);
@@ -34,6 +36,8 @@ int main() {
                 break;
 
             default:
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cerr << "Error: command not recognized" << std::endl;
         }
     }
