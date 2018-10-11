@@ -1,7 +1,8 @@
-// compile: g++ -o a2ece650 ../a2ece650.cpp
+// compile: g++ -o a2ece650 ../a2ece650.cpp ../graph.cpp
 #include <iostream>
 #include <limits>
 #include "a2ece650.hpp"
+#include "graph.hpp"
 
 
 int main() {
