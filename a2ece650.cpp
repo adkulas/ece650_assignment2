@@ -48,6 +48,10 @@ int main() {
     //         std::cout << line << std::endl;
     //     }
     std::cout << "This is the end" << std::endl;
+    Graph test(10);
+    test.shortest_distance();
+
+
 
     return 0;
 }

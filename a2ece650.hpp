@@ -4,57 +4,82 @@
 // See complex_main.cpp for compilation instructions
 
 #include <cmath>
-class Complex {
+#include <iostream>
+#include <vector>
+#include <list>
+#include <climits>
+
+class Graph {
 private:
-    double re, im;
+    int vertices;
+    std::vector< std::vector<int> > graph;
+    std::vector<int> pred;
+    std::vector<int> dist;
+
+    bool breadthFirstSearch(int src, int dest);
 
 public:
-    Complex( double = 0.0, double = 0.0 );
+    Graph( int vertices = 0 );
 
     /// Accessors
-
-    double real() const;
-    double imag() const;
-    double abs() const;
-    Complex exp() const;
+    void shortest_distance() const;
 
     /// Mutators
-    void normalize();
+    void add_edge(int src, int dest);
+
 };
 
 // Constructor
-inline Complex::Complex( double r, double i ):
-    re( r ), im( i ) {/*empty constructor*/}
+inline Graph::Graph( int v ):
+    vertices(v), graph(v), pred(v), dist(v) {/*empty constructor*/}
 
-// return the real component
-inline double Complex::real() const {
-    return re;
-}
+inline bool Graph::breadthFirstSearch(int src, int dest) {
+    std::list<int> queue;
+    bool visited[vertices];
 
-// return the imaginary component
-inline double Complex::imag() const {
-    return im;
-}
-
-// return the absolute value
-inline double Complex::abs() const {
-    return std::sqrt( re*re + im*im );
-}
-
-// Return the exponential of the complex value
-inline Complex Complex::exp() const {
-    double exp_re = std::exp( re );
-
-    return Complex( exp_re*std::cos(im), exp_re*std::sin(im) );
-}
-
-// Normalize the complex number (giving it unit absolute value, |z| = 1)
-inline void Complex::normalize() {
-    if ( re == 0 && im == 0 ) {
-        return;
+    // initialization: visted to false dist to inf and no predecessors
+    for (int i = 0; i < vertices; i++) {
+        visited[i] = false;
+        dist[i] = INT_MAX;
+        pred[i] = -1;
     }
 
-    double absval = abs();
-    re /= absval;
-    im /= absval;
+    // source is first to be visited and 
+    // distance from source to itself should be 0 
+    visited[src] = true;
+    dist[src] = 0;
+    queue.push_back(src);
+
+    // iterate through graph breadth first and halt when destination is found
+    while (!queue.empty()) {
+        int n = queue.front();
+        queue.pop_front();
+        for (int i =0; i < graph[n].size(); i++) {
+            if (visited[graph[n][i]] == false) 
+            {
+                visited[graph[n][i]] == true;
+                dist[graph[n][i]] = dist[n] + 1;
+                pred[graph[n][i]] = n;
+                queue.push_back(graph[n][i]);
+
+                if (graph[n][i] == dest) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+inline void Graph::add_edge(int src, int dest) {
+    graph[src].push_back(dest); 
+    graph[dest].push_back(src);
+
+    return;
+}
+
+void Graph::shortest_distance() const {
+
+    std::cout << "Hello" << vertices << pred.size() << graph.size();
+    return;
 }
