@@ -83,7 +83,7 @@ inline void Graph::print_shortest_path(int src, int dest) {
     int current = dest;
 
     if (breadth_first_search(src, dest) == false) {
-        std::cout << "There is no path between Souce: " << src 
+        std::cerr << "Error: There is no path between Souce: " << src 
                   << " and Destination: " << dest << std::endl;
         
         return;
