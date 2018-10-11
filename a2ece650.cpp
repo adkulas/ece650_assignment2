@@ -49,7 +49,9 @@ int main() {
     //     }
     std::cout << "This is the end" << std::endl;
     Graph test(10);
-    test.shortest_distance();
+    test.add_edge(0,4);
+    test.print_shortest_path(0,3);
+
 
 
 

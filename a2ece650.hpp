@@ -16,13 +16,13 @@ private:
     std::vector<int> pred;
     std::vector<int> dist;
 
-    bool breadthFirstSearch(int src, int dest);
+    bool breadth_first_search(int src, int dest);
 
 public:
     Graph( int vertices = 0 );
 
     /// Accessors
-    void shortest_distance() const;
+    void print_shortest_path(int src, int dest);
 
     /// Mutators
     void add_edge(int src, int dest);
@@ -33,7 +33,7 @@ public:
 inline Graph::Graph( int v ):
     vertices(v), graph(v), pred(v), dist(v) {/*empty constructor*/}
 
-inline bool Graph::breadthFirstSearch(int src, int dest) {
+inline bool Graph::breadth_first_search(int src, int dest) {
     std::list<int> queue;
     bool visited[vertices];
 
@@ -78,8 +78,28 @@ inline void Graph::add_edge(int src, int dest) {
     return;
 }
 
-void Graph::shortest_distance() const {
+inline void Graph::print_shortest_path(int src, int dest) {
+    std::vector<int> shortest_path;
+    int current = dest;
 
-    std::cout << "Hello" << vertices << pred.size() << graph.size();
+    if (breadth_first_search(src, dest) == false) {
+        std::cout << "There is no path between Souce: " << src 
+                  << " and Destination: " << dest << std::endl;
+        
+        return;
+    }
+
+    shortest_path.push_back(current);
+    while (pred[current] != -1) {
+        shortest_path.push_back(pred[current]);
+        current = pred[current];
+    }
+
+    for (int i = shortest_path.size() -1; i >=0; i--) {
+        std::cout << shortest_path[i];
+        if (i > 0) std::cout << "-";
+    }
+    std::cout << std::endl;
+
     return;
 }
