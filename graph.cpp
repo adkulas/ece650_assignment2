@@ -33,7 +33,7 @@ bool Graph::breadth_first_search(int src, int dest) {
         for (int i =0; i < graph[n].size(); i++) {
             if (visited[graph[n][i]] == false) 
             {
-                visited[graph[n][i]] == true;
+                visited[graph[n][i]] = true;
                 dist[graph[n][i]] = dist[n] + 1;
                 pred[graph[n][i]] = n;
                 queue.push_back(graph[n][i]);
