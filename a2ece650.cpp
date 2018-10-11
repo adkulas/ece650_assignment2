@@ -48,12 +48,22 @@ int main() {
     //         std::cout << line << std::endl;
     //     }
     std::cout << "This is the end" << std::endl;
-    Graph test(10);
-    test.add_edge(0,4);
-    test.print_shortest_path(0,3);
-
-
-
-
+    Graph test(15);
+    test.add_edge(2,6);
+    test.add_edge(2,8);
+    test.add_edge(2,5);
+    test.add_edge(6,5);
+    test.add_edge(5,8);
+    test.add_edge(6,10);
+    test.add_edge(10,8);
+    test.print_shortest_path(2,10);
+    Graph test2(5);
+    test2.add_edge(0,2);
+    test2.add_edge(2,1);
+    test2.add_edge(2,3);
+    test2.add_edge(3,4);
+    test2.add_edge(4,1);
+    test2.print_shortest_path(4,0);
+    
     return 0;
 }
