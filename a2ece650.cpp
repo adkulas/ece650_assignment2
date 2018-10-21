@@ -28,6 +28,9 @@ int main() {
 
                 std::cout << g << std::endl;
 
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
                 break;
             
             case 'E': case 'e':
@@ -43,12 +46,18 @@ int main() {
                 g->add_edge(6,10);
                 g->add_edge(10,8);
 
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
                 break;
 
             case 'S': case 's':
                 std::cin >> start_vertex >> end_vertex;
                 std::cout << "Shortest cmd entered " << start_vertex << ' ' << end_vertex << std::endl;
                 g->print_shortest_path(start_vertex, end_vertex);
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
                 break;
 
