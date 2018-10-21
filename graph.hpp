@@ -13,11 +13,12 @@ private:
     bool breadth_first_search(int src, int dest);
 
 public:
-    Graph( int vertices = 0 );
+    Graph( int v = 0 );
 
     /// Accessors
     void print_shortest_path(int src, int dest);
-
+    int get_vertices() const;
+    
     /// Mutators
     void add_edge(int src, int dest);
 

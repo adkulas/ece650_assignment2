@@ -9,6 +9,7 @@
 Graph::Graph( int v ):
     vertices(v), graph(v), pred(v), dist(v) {/*empty constructor*/}
 
+// Private
 bool Graph::breadth_first_search(int src, int dest) {
     std::list<int> queue;
     bool visited[vertices];
@@ -47,6 +48,7 @@ bool Graph::breadth_first_search(int src, int dest) {
     return false;
 }
 
+// Mutators
 void Graph::add_edge(int src, int dest) {
     graph[src].push_back(dest); 
     graph[dest].push_back(src);
@@ -54,9 +56,15 @@ void Graph::add_edge(int src, int dest) {
     return;
 }
 
+// Accessors
+int Graph::get_vertices() const {
+    return vertices;
+}
+
 void Graph::print_shortest_path(int src, int dest) {
     std::vector<int> shortest_path;
     int current = dest;
+
 
     if (breadth_first_search(src, dest) == false) {
         std::cerr << "Error: There is no path between Souce: " << src 

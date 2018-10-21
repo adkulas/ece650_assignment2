@@ -6,34 +6,50 @@
 
 
 int main() {
-    // Complex cx(10, 4);
-
-    // std::cout << "Absolute value of " << cx.real() << "+" << cx.imag() << "i"
-    //           << " is " << cx.abs() << "\n";
-
     char cmd;
     int vertices;
-    int vertexStart;
-    int vertexEnd;
+    int start_vertex;
+    int end_vertex;
     std::string edges;
+    Graph* g = NULL;
 
     std::cout << "Program Start" << std::endl;
     while(std::cin >> cmd){    
-        //std::cin >> cmd;  
+        //std::cin >> cmd;
         switch(cmd) {
             case 'V': case 'v':
                 std::cin >> vertices;
                 std::cout << "Vertex cmd entered " << vertices << std::endl;
+                
+                // Create a new graph
+                delete g;
+                g = NULL;
+                g = new Graph(vertices);
+
+                std::cout << g << std::endl;
+
                 break;
             
             case 'E': case 'e':
                 std::cin >> edges;
                 std::cout << "Edge cmd entered " << edges << std::endl;
+
+                std::cout << g->get_vertices() << std::endl;
+                g->add_edge(2,6);
+                g->add_edge(2,8);
+                g->add_edge(2,5);
+                g->add_edge(6,5);
+                g->add_edge(5,8);
+                g->add_edge(6,10);
+                g->add_edge(10,8);
+
                 break;
 
             case 'S': case 's':
-                std::cin >> vertexStart >> vertexEnd;
-                std::cout << "Shortest cmd entered " << vertexStart << ' ' << vertexEnd << std::endl;
+                std::cin >> start_vertex >> end_vertex;
+                std::cout << "Shortest cmd entered " << start_vertex << ' ' << end_vertex << std::endl;
+                g->print_shortest_path(start_vertex, end_vertex);
+
                 break;
 
             default:
@@ -43,6 +59,7 @@ int main() {
         }
     }
 
+    delete g;
     // std::string line;
     // while (std::getline(std::cin, line)) //Take input until EOF character is found
     //     {
