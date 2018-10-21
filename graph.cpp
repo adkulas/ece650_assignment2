@@ -50,8 +50,14 @@ bool Graph::breadth_first_search(int src, int dest) {
 
 // Mutators
 void Graph::add_edge(int src, int dest) {
-    graph[src].push_back(dest); 
-    graph[dest].push_back(src);
+    if (src != dest) {
+        graph[src].push_back(dest); 
+        graph[dest].push_back(src); 
+    } else {
+        std::cerr << "Error: Cannot add edge from vertex to iteself"
+                  << std::endl;
+    }
+
 
     return;
 }
