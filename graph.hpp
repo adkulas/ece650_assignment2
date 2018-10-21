@@ -11,6 +11,7 @@ private:
     std::vector<int> dist;
 
     bool breadth_first_search(int src, int dest);
+    bool check_valid_input(std::vector< std::pair<int,int> > edges);
 
 public:
     Graph( int v = 0 );

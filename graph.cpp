@@ -48,6 +48,22 @@ bool Graph::breadth_first_search(int src, int dest) {
     return false;
 }
 
+bool Graph::check_valid_input(std::vector< std::pair<int,int> > edges) {
+    for ( auto& e : edges) {
+        if (vertices <= e.first || vertices <= e.second) {
+            std::cerr << "Error: Attempted to add edge to vertex that does not exist"
+                      << std::endl;
+            return false;
+        }
+        if (e.first == e.second) {
+            std::cerr << "Error:  Cannot add edge from vertex to iteself"
+                      << std::endl;
+            return false;
+        }    
+    }
+    return true;
+}
+
 // Mutators
 void Graph::add_edge(int src, int dest) {
     if (src != dest) {
@@ -62,15 +78,12 @@ void Graph::add_edge(int src, int dest) {
 }
 
 void Graph::add_edges(std::vector< std::pair<int,int> > edges) {
-    for ( auto& e : edges) {
-        if (vertices > e.first && vertices > e.second) {
-            // std::cout << vertices << " " << e.first << " " << e.second << std::endl;
-            add_edge(e.first, e.second);
-        } else {
-            std::cerr << "Error: Attempted to add edge to vertex that does not exist"
-                        << std::endl;
+    if ( check_valid_input(edges) ) {
+        for ( auto& e : edges) {
+                // std::cout << vertices << " " << e.first << " " << e.second << std::endl;
+                add_edge(e.first, e.second);
+            }
         }
-    }
     return;
 }
 
@@ -85,7 +98,7 @@ void Graph::print_shortest_path(int src, int dest) {
 
 
     if (breadth_first_search(src, dest) == false) {
-        std::cerr << "Error: There is no path between Souce: " << src 
+        std::cerr << "Error: There is no path between Source " << src 
                   << " and Destination: " << dest << std::endl;
         
         return;

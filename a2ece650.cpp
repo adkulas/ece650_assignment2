@@ -43,11 +43,10 @@ int main() {
     int start_vertex;
     int end_vertex;
     std::string edges_input;
-    std::vector< std::pair<int,int> > edges;
     Graph* g = new Graph(0);
 
     while(std::cin >> cmd){    
-        //std::cin >> cmd;
+        
         switch(cmd) {
             
             case 'V': case 'v':
