@@ -46,7 +46,6 @@ int main() {
     std::vector< std::pair<int,int> > edges;
     Graph* g = new Graph(0);
 
-    std::cout << "Program Start" << std::endl;
     while(std::cin >> cmd){    
         //std::cin >> cmd;
         switch(cmd) {
