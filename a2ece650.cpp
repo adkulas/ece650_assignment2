@@ -1,17 +1,51 @@
-// compile: g++ -o a2ece650 ../a2ece650.cpp ../graph.cpp
+// compile: g++ -o a2ece650 ../a2ece650.cpp ../graph.cpp -std=c++11
 #include <iostream>
 #include <limits>
+#include <regex>
 #include "a2ece650.hpp"
 #include "graph.hpp"
 
+std::vector< std::pair<int,int> > parse(std::string s) {
+    std::pair<int, int> edge;
+    std::vector< std::pair<int,int> > result;
+
+    // using regex
+    try {
+        std::regex re("[0-9]+");
+        std::sregex_iterator next(s.begin(), s.end(), re);
+        std::sregex_iterator end;
+        while (next != end) {
+            std::smatch match1;
+            std::smatch match2;
+            
+            match1 = *next;
+            next++;
+            // iterate to next match
+            if (next != end) {
+                match2 = *next;
+                std::cout << std::stoi(match1.str()) << " " << std::stoi(match2.str()) << std::endl;
+                edge.first = std::stoi(match1.str());
+                edge.second = std::stoi(match2.str());
+                result.push_back(edge);
+                next++;
+            }
+        } 
+    } 
+    catch (std::regex_error& e) {
+    // Syntax error in the regular expression
+    }
+
+    return result;
+}
 
 int main() {
     char cmd;
     int vertices;
     int start_vertex;
     int end_vertex;
-    std::string edges;
     Graph* g = NULL;
+    std::string edges_input;
+    std::vector< std::pair<int,int> > edges;
 
     std::cout << "Program Start" << std::endl;
     while(std::cin >> cmd){    
@@ -34,10 +68,18 @@ int main() {
                 break;
             
             case 'E': case 'e':
-                std::cin >> edges;
-                std::cout << "Edge cmd entered " << edges << std::endl;
+                std::cin >> edges_input;
+                std::cout << "Edge cmd entered " << edges_input << std::endl;
 
                 std::cout << g->get_vertices() << std::endl;
+
+                
+                edges = parse(edges_input);
+                // for (int i=0; i < edges.size(); i++) {
+                //     std::cout << edges[i].first << " " << edges[i].second << std::endl;
+                //     edges[i]
+                // }
+
                 g->add_edge(2,6);
                 g->add_edge(2,8);
                 g->add_edge(2,5);
@@ -92,5 +134,9 @@ int main() {
     test2.add_edge(4,1);
     test2.print_shortest_path(4,0);
     
+    std::string s("{<11,2>,<33,4>,<55,6>}");
+    std::vector< std::pair<int,int> > ex;
+    ex = parse(s);
+    std::cout << "test: " << ex[0].first << std::endl;
     return 0;
 }
