@@ -58,7 +58,19 @@ void Graph::add_edge(int src, int dest) {
                   << std::endl;
     }
 
+    return;
+}
 
+void Graph::add_edges(std::vector< std::pair<int,int> > edges) {
+    for ( auto& e : edges) {
+        if (vertices > e.first && vertices > e.second) {
+            // std::cout << vertices << " " << e.first << " " << e.second << std::endl;
+            add_edge(e.first, e.second);
+        } else {
+            std::cerr << "Error: Attempted to add edge to vertex that does not exist"
+                        << std::endl;
+        }
+    }
     return;
 }
 

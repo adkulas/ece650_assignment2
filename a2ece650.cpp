@@ -50,7 +50,6 @@ int main() {
         //std::cin >> cmd;
         switch(cmd) {
             
-            // V command to create graph
             case 'V': case 'v':
                 std::cin >> vertices;      
                 // Create a new graph
@@ -61,26 +60,16 @@ int main() {
 
                 break;
             
-            // E command to specify edges in graph
             case 'E': case 'e':
                 // E {<2,6>,<2,8>,<2,5>,<6,5>,<5,8>,<6,10>,<10,8>}
                 std::cin >> edges_input;
-                edges = parse(edges_input);
-                for (int i=0; i < edges.size(); i++) {
-                    if (g->get_vertices() >= edges[i].first || 
-                        g->get_vertices() >= edges[i].second) {
-                            g->add_edge(edges[i].first, edges[i].second); 
-                    } else {
-                        std::cerr << "Error: Attempted to add edge to vertex that does not exist"
-                                  << std::endl;
-                    }
-                }
+                g->add_edges( parse(edges_input) );
+                
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
                 break;
 
-            // s command for shortest path
             case 'S': case 's':
                 std::cin >> start_vertex >> end_vertex;
                 g->print_shortest_path(start_vertex, end_vertex);

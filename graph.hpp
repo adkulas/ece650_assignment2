@@ -21,5 +21,6 @@ public:
     
     /// Mutators
     void add_edge(int src, int dest);
+    void add_edges(std::vector< std::pair<int,int> > edges);
 
 };
