@@ -1,3 +1,8 @@
+/*
+The code used for breadth first search and shortest path
+is a modified version retrieved from:
+https://www.geeksforgeeks.org/shortest-path-unweighted-graph/
+*/
 
 #include <iostream>
 #include <vector>
@@ -55,24 +60,19 @@ bool Graph::check_valid_input(std::vector< std::pair<int,int> > edges) {
                       << std::endl;
             return false;
         }
-        if (e.first == e.second) {
-            std::cerr << "Error:  Cannot add edge from vertex to iteself"
-                      << std::endl;
-            return false;
-        }    
+        // if (e.first == e.second) {
+        //     std::cerr << "Error:  Cannot add edge from vertex to iteself"
+        //               << std::endl;
+        //     return false;
+        // }    
     }
     return true;
 }
 
 // Mutators
 void Graph::add_edge(int src, int dest) {
-    if (src != dest) {
-        graph[src].push_back(dest); 
-        graph[dest].push_back(src); 
-    } else {
-        std::cerr << "Error: Cannot add edge from vertex to iteself"
-                  << std::endl;
-    }
+    graph[src].push_back(dest); 
+    graph[dest].push_back(src); 
 
     return;
 }

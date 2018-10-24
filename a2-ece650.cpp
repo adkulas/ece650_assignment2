@@ -60,7 +60,6 @@ int main() {
                 break;
             
             case 'E': case 'e':
-                // E {<2,6>,<2,8>,<2,5>,<6,5>,<5,8>,<6,10>,<10,8>}
                 std::cin >> edges_input;
                 g->add_edges( parse(edges_input) );
                 
@@ -83,8 +82,6 @@ int main() {
                 std::cerr << "Error: command not recognized" << std::endl;
         }
     }
-
     delete g;
-
     return 0;
 }
