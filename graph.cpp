@@ -93,6 +93,11 @@ int Graph::get_vertices() const {
 }
 
 void Graph::print_shortest_path(int src, int dest) {
+    if(src >= vertices || dest >= vertices) {
+        std::cerr << "Error: invalid vertex specified" << std::endl;
+        return;
+    }
+    
     std::vector<int> shortest_path;
     int current = dest;
 
