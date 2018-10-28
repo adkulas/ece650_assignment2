@@ -55,7 +55,7 @@ bool Graph::breadth_first_search(int src, int dest) {
 
 bool Graph::check_valid_input(std::vector< std::pair<int,int> > edges) {
     for ( auto& e : edges) {
-        if (vertices <= e.first || vertices <= e.second) {
+        if (vertices <= e.first || vertices <= e.second || e.first < 0 || e.second < 0) {
             std::cerr << "Error: Attempted to add edge to vertex that does not exist"
                       << std::endl;
             return false;
