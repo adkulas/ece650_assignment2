@@ -11,7 +11,7 @@ std::vector< std::pair<int,int> > parse(std::string s) {
     
     // using regex
     try {
-        std::regex re("[0-9]+"); //match consectuive numbers
+        std::regex re("-?[0-9]+"); //match consectuive numbers
         std::sregex_iterator next(s.begin(), s.end(), re);
         std::sregex_iterator end;
         while (next != end) {
@@ -52,8 +52,12 @@ int main() {
             case 'V': case 'v':
                 std::cin >> vertices;      
                 // Create a new graph
-                delete g;
-                g = new Graph(vertices);
+                if (vertices >= 0) {
+                    delete g;
+                    g = new Graph(vertices);
+                } else {
+                    std::cerr << "Error: Incorrect value for vertices entered" << std::endl;
+                }
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
