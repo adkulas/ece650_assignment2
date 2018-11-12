@@ -12,4 +12,4 @@ set (CMAKE_CXX_FLAGS "-std=c++11 -Wall ${CMAKE_CXX_FLAGS}")
 add_executable(a2-ece650 a2-ece650.cpp graph.cpp)
 
 # create the executable for tests
-add_executable(tests test.cpp)
+# add_executable(tests test.cpp)
